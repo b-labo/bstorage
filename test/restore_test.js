@@ -15,6 +15,7 @@ describe('restore', function () {
   before(() => co(function * () {
     injectmock(global, 'window', {
       localStorage: {
+        hoge: { msg: 'Value of hoge' },
         getItem (key) {
           return { msg: 'Value of ' + key }
         }
