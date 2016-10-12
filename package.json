@@ -1,6 +1,6 @@
 {
   "name": "bstorage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Browser local-storage wrapper",
   "main": "lib",
   "browser": "shim/browser",
@@ -23,12 +23,12 @@
   },
   "homepage": "https://github.com/b-labo/bstorage#readme",
   "dependencies": {
-    "ababel": "^1.1.2",
-    "ababel-es2015": "^1.0.6",
     "bwindow": "^1.0.7",
     "co": "^4.6.0"
   },
   "devDependencies": {
+    "ababel": "^1.1.12",
+    "ababel-es2015": "^1.0.8",
     "amocha": "^1.0.14",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.4",
