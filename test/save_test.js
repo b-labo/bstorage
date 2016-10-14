@@ -12,11 +12,20 @@ const injectmock = require('injectmock')
 describe('save', function () {
   this.timeout(3000)
   let saved = {}
+  let states = []
   before(() => co(function * () {
     injectmock(global, 'window', {
       localStorage: {
         setItem (key, value) {
           saved[ key ] = value
+        }
+      },
+      location: {
+        search: ''
+      },
+      history: {
+        pushState (state, title, url) {
+          states.push([ state, title, url ])
         }
       }
     })
@@ -32,6 +41,14 @@ describe('save', function () {
     })
     assert.ok(success)
     assert.deepEqual(saved, { foo: '{"msg":"This is foo"}' })
+  }))
+
+  it('Save to query', () => co(function * () {
+    let success = save.query('foo', {
+      msg: 'This is foo'
+    })
+    assert.ok(success)
+    assert.deepEqual(states, [ [ null, null, '?foo%5Bmsg%5D=This%20is%20foo' ] ])
   }))
 })
 

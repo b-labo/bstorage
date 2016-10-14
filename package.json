@@ -24,7 +24,8 @@
   "homepage": "https://github.com/b-labo/bstorage#readme",
   "dependencies": {
     "bwindow": "^1.0.7",
-    "co": "^4.6.0"
+    "co": "^4.6.0",
+    "qs": "^6.2.1"
   },
   "devDependencies": {
     "ababel": "^1.1.12",
