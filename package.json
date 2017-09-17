@@ -1,6 +1,6 @@
 {
   "name": "bstorage",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Browser local-storage wrapper",
   "main": "lib",
   "browser": "shim/browser",
