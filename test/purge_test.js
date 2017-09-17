@@ -6,13 +6,13 @@
 
 const purge = require('../lib/purge.js')
 const assert = require('assert')
-const co = require('co')
+
 const injectmock = require('injectmock')
 
 describe('purge', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () => {
     injectmock(global, 'window', {
       localStorage: {
         removeItem (key) {
@@ -20,15 +20,15 @@ describe('purge', function () {
         }
       }
     })
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
     injectmock.restoreAll()
-  }))
+  })
 
-  it('Purge', () => co(function * () {
+  it('Purge', async () => {
     assert.ok(purge('hoge'))
-  }))
+  })
 })
 
 /* global describe, before, after, it */

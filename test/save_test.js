@@ -6,14 +6,14 @@
 
 const save = require('../lib/save.js')
 const assert = require('assert')
-const co = require('co')
+
 const injectmock = require('injectmock')
 
 describe('save', function () {
   this.timeout(3000)
   let saved = {}
   let states = []
-  before(() => co(function * () {
+  before(async () => {
     injectmock(global, 'window', {
       localStorage: {
         setItem (key, value) {
@@ -29,27 +29,27 @@ describe('save', function () {
         }
       }
     })
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
     injectmock.restoreAll()
-  }))
+  })
 
-  it('Save', () => co(function * () {
+  it('Save', async () => {
     let success = save('foo', {
       msg: 'This is foo'
     })
     assert.ok(success)
     assert.deepEqual(saved, { foo: '{"msg":"This is foo"}' })
-  }))
+  })
 
-  it('Save to query', () => co(function * () {
+  it('Save to query', async () => {
     let success = save.query('foo', {
       msg: 'This is foo'
     })
     assert.ok(success)
     assert.deepEqual(states, [ [ null, null, '?foo%5Bmsg%5D=This%20is%20foo' ] ])
-  }))
+  })
 })
 
 /* global describe, before, after, it */

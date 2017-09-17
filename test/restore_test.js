@@ -6,13 +6,13 @@
 
 const restore = require('../lib/restore.js')
 const assert = require('assert')
-const co = require('co')
+
 const injectmock = require('injectmock')
 
 describe('restore', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () => {
     injectmock(global, 'window', {
       localStorage: {
         hoge: { msg: 'Value of hoge' },
@@ -21,16 +21,16 @@ describe('restore', function () {
         }
       }
     })
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
     injectmock.restoreAll()
-  }))
+  })
 
-  it('Restore', () => co(function * () {
+  it('Restore', async () => {
     let hoge = restore('hoge')
     assert.deepEqual(hoge, { msg: 'Value of hoge' })
-  }))
+  })
 })
 
 /* global describe, before, after, it */
