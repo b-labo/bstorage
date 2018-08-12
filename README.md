@@ -74,10 +74,10 @@ Usage
 ```javascript
 'use strict'
 
-const { save, restore, purge } = require('bstorage')
+const {save, restore, purge} = require('bstorage')
 
 // Set to localStorage
-save('foo', { msg: 'This is foo' })
+save('foo', {msg: 'This is foo'})
 
 // Get from localStorage
 console.log(restore('foo')) // -> { msg: 'This is foo' }
